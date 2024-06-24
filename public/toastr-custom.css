@@ -1,0 +1,10 @@
+/* Toastr Custom Styles */
+.toast-success {
+    background-color: #28a745; /* Màu xanh lá cây sâu hơn */
+    color: white;
+}
+
+.toast-error {
+    background-color: #dc3545; /* Màu đỏ sâu hơn */
+    color: white;
+}
