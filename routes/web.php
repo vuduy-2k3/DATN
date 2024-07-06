@@ -8,6 +8,7 @@ use App\Http\Controllers\FloorController;
 use App\Http\Controllers\CameraController;
 use App\Http\Controllers\VehicleInformationController;
 use App\Http\Controllers\VehicleLogController;
+use App\Http\Controllers\TicketController;
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -70,5 +71,12 @@ Route::middleware(['auth.admin'])->group(function () {
         Route::get('', 'index')->name('vehicleLogs');
         Route::get('search', 'search')->name('vehicleLogs.search');
     
+    });
+
+    Route::controller(TicketController::class)->prefix('quanlyguixe.com/tickets')->group(function () {
+        Route::get('', 'index')->name('tickets');
+        Route::get('search', 'search')->name('tickets.search');
+        Route::get('export-pdf/{ticketId}','exportPDF')->name('tickets.exportPDF');
+
     });
 });

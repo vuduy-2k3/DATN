@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\VehicleLog;
 use App\Models\Area;
 use App\Models\Floor;
-
+use App\Models\Ticket;
 class CameraController extends Controller
 {
     public function showCamera()
@@ -146,10 +146,17 @@ class CameraController extends Controller
                                     'phone' => '',
                                     'IDCard' => ''
                                 ]);
+                                Ticket::create([
+                                    'licensePlate' => $vehicleAPI,                                   
+                                    'area_id' => $area_id ?? '',
+                                    'numberLocation' => $numberLocation ?? '',                               
+                                ]);
+
                                 VehicleLog::create([
                                     'status' => 'active',
                                     'licensePlate' => $vehicleAPI,
                                 ]);
+                            
                                 $message = 'Xe có biển số ' . $vehicleAPI . ' đã vào khu gửi xe.';
                                 return Response::json(['success' => true, 'message' => $message]);
                             }else{
